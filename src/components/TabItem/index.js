@@ -1,12 +1,16 @@
 const TabItem = props => {
-  const details = props
-  console.log(details)
-  const {menuCategory} = details
-  console.log(menuCategory)
+  const {details, changeActiveId} = props
+  const {menuCategory, menuCategoryId} = details
+
+  const onChangeId = () => {
+    changeActiveId(menuCategoryId)
+  }
 
   return (
     <li>
-      <p>{menuCategory}</p>
+      <button type="button" onClick={onChangeId}>
+        {menuCategory}
+      </button>
     </li>
   )
 }

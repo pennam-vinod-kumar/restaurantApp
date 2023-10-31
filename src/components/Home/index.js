@@ -1,17 +1,19 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import TabItem from '../TabItem'
+import ItemCard from '../ItemCard'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
-  failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
 }
 
 class Home extends Component {
   state = {
-    foodData: [],
+    foodData: {},
+    activeId: '11',
+    count: 0,
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -46,19 +48,35 @@ class Home extends Component {
     }
   }
 
+  changeActiveId = id => {
+    this.setState({activeId: id})
+  }
+
   renderSuccessView = () => {
-    const {foodData} = this.state
+    const {foodData, activeId, count} = this.state
     const {tableMenuList} = foodData
-    console.log(tableMenuList)
+    const filteredItem = tableMenuList.filter(
+      each => each.menuCategoryId === activeId,
+    )
     return (
       <div>
-        <div>
+        <div className="header">
           <h1>{foodData.restaurantName}</h1>
-          <p>cart</p>
+          <p>My Orders</p>
+          <p>{count}</p>
         </div>
-        <ul className="tab">
+        <ul className="tabs-container">
           {tableMenuList.map(each => (
-            <TabItem key={each.menuCategoryId} details={each} />
+            <TabItem
+              key={each.menuCategoryId}
+              details={each}
+              changeActiveId={this.changeActiveId}
+            />
+          ))}
+        </ul>
+        <ul className="items-container">
+          {filteredItem[0].categoryDishes.map(each => (
+            <ItemCard key={each.dish_id} details={each} />
           ))}
         </ul>
       </div>
