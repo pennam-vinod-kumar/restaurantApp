@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import TabItem from '../TabItem'
 import ItemCard from '../ItemCard'
+import Header from '../Header'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -13,7 +14,6 @@ class Home extends Component {
   state = {
     foodData: {},
     activeId: '11',
-    count: 0,
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -53,7 +53,7 @@ class Home extends Component {
   }
 
   renderSuccessView = () => {
-    const {foodData, activeId, count} = this.state
+    const {foodData, activeId} = this.state
     const {tableMenuList} = foodData
     const filteredItem = tableMenuList.filter(
       each => each.menuCategoryId === activeId,
@@ -61,9 +61,7 @@ class Home extends Component {
     return (
       <div>
         <div className="header">
-          <h1>{foodData.restaurantName}</h1>
-          <p>My Orders</p>
-          <p>{count}</p>
+          <Header />
         </div>
         <ul className="tabs-container">
           {tableMenuList.map(each => (
