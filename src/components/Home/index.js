@@ -22,9 +22,9 @@ class Home extends Component {
   }
 
   getFoodData = async () => {
-    this.setState({
+    /*   this.setState({
       apiStatus: apiStatusConstants.inProgress,
-    })
+    })  */
 
     const apiUrl =
       'https://run.mocky.io/v3/77a7e71b-804a-4fbd-822c-3e365d3482cc'
@@ -60,9 +60,6 @@ class Home extends Component {
     )
     return (
       <div>
-        <div className="header">
-          <Header />
-        </div>
         <ul className="tabs-container">
           {tableMenuList.map(each => (
             <TabItem
@@ -93,15 +90,20 @@ class Home extends Component {
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderSuccessView()
-      case apiStatusConstants.inProgress:
-        return this.renderLoadingView()
+      /*   case apiStatusConstants.inProgress:
+        return this.renderLoadingView()  */
       default:
         return null
     }
   }
 
   render() {
-    return <div>{this.renderDetails()}</div>
+    return (
+      <div>
+        <Header />
+        {this.renderDetails()}
+      </div>
+    )
   }
 }
 export default Home
