@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import LoginForm from './components/LoginForm'
+import Login from './components/Login'
 import Home from './components/Home'
 import Cart from './components/Cart'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -99,7 +99,7 @@ class App extends Component {
         }}
       >
         <Switch>
-          <Route exact path="/login" component={LoginForm} />
+          <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/cart" component={Cart} />
         </Switch>
