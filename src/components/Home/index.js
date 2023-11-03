@@ -98,9 +98,11 @@ class Home extends Component {
   }
 
   render() {
+    const {foodData} = this.state
+
     return (
       <div>
-        <Header />
+        <Header name={foodData.restaurantName} />
         {this.renderDetails()}
       </div>
     )

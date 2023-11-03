@@ -7,7 +7,6 @@ import CartContext from '../../context/CartContext'
 const Header = props => {
   const onClickLogout = () => {
     const {history} = props
-
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
@@ -29,12 +28,14 @@ const Header = props => {
     </CartContext.Consumer>
   )
 
+  const {name} = props
+
   return (
     <nav className="nav-header">
       <div className="nav-content">
         <div className="nav-bar-large-container">
           <Link to="/">
-            <h1>UNI Resto Cafe</h1>
+            <h1>{name}</h1>
           </Link>
           <ul className="nav-menu">
             <li className="nav-menu-item">
